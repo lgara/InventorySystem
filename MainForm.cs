@@ -16,5 +16,10 @@ namespace InventorySystem
 		{
 			InitializeComponent();
 		}
+
+		public void UpdateForm()
+		{
+
+		}
 	}
 }
