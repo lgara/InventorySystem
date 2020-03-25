@@ -38,6 +38,10 @@ namespace InventorySystem
 				AddPartMinTextBox.Text = partsListView.SelectedItems[0].SubItems[4].Text;
 				AddPartMachineOrCompanyTextBox.Text = inHouse.MachineId.ToString();
 			}
+			else
+			{
+				AddPartIdTextBox.Text = inventory.allParts.Count.ToString();
+			}
 		}
 
 		private void InHouseRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -59,6 +63,7 @@ namespace InventorySystem
 		private void AddPartCancelButton_Click(object sender, EventArgs e)
 		{
 			this.Close();
+			mainForm.Show();
 		}
 
 		private void AddPartNameTextBox_TextChanged(object sender, EventArgs e)
@@ -189,6 +194,7 @@ namespace InventorySystem
 		
 			mainForm.UpdateForm();
 			this.Close();
+			mainForm.Show();
 		}
 	}
 }

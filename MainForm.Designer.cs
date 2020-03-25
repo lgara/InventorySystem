@@ -40,10 +40,22 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.listBox1 = new System.Windows.Forms.ListBox();
-			this.listBox2 = new System.Windows.Forms.ListBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.PartsListView = new System.Windows.Forms.ListView();
+			this.PartsIdHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.PartsNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.PartsInventoryHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.PartsPriceHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.PartsMinHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.PartsMaxHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ProductsListView = new System.Windows.Forms.ListView();
+			this.ProductsIdHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ProductsNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ProductsInventoryHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ProductsPriceHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ProductsMinHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ProductsMaxHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
 			// PartsSearchButton
@@ -72,6 +84,7 @@
 			this.PartsAddButton.TabIndex = 2;
 			this.PartsAddButton.Text = "Add";
 			this.PartsAddButton.UseVisualStyleBackColor = true;
+			this.PartsAddButton.Click += new System.EventHandler(this.PartsAddButton_Click);
 			// 
 			// PartsModifyButton
 			// 
@@ -82,6 +95,7 @@
 			this.PartsModifyButton.TabStop = false;
 			this.PartsModifyButton.Text = "Modify";
 			this.PartsModifyButton.UseVisualStyleBackColor = true;
+			this.PartsModifyButton.Click += new System.EventHandler(this.PartsModifyButton_Click);
 			// 
 			// PartsDeleteButton
 			// 
@@ -91,6 +105,7 @@
 			this.PartsDeleteButton.TabIndex = 4;
 			this.PartsDeleteButton.Text = "Delete";
 			this.PartsDeleteButton.UseVisualStyleBackColor = true;
+			this.PartsDeleteButton.Click += new System.EventHandler(this.PartsDeleteButton_Click);
 			// 
 			// ProductsAddButton
 			// 
@@ -127,6 +142,7 @@
 			this.ExitButton.TabIndex = 8;
 			this.ExitButton.Text = "Exit";
 			this.ExitButton.UseVisualStyleBackColor = true;
+			this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
 			// 
 			// label1
 			// 
@@ -158,22 +174,6 @@
 			this.label3.TabIndex = 11;
 			this.label3.Text = "Products";
 			// 
-			// listBox1
-			// 
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.Location = new System.Drawing.Point(15, 87);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(575, 264);
-			this.listBox1.TabIndex = 12;
-			// 
-			// listBox2
-			// 
-			this.listBox2.FormattingEnabled = true;
-			this.listBox2.Location = new System.Drawing.Point(625, 87);
-			this.listBox2.Name = "listBox2";
-			this.listBox2.Size = new System.Drawing.Size(575, 264);
-			this.listBox2.TabIndex = 13;
-			// 
 			// textBox1
 			// 
 			this.textBox1.Location = new System.Drawing.Point(453, 62);
@@ -188,13 +188,101 @@
 			this.textBox2.Size = new System.Drawing.Size(137, 20);
 			this.textBox2.TabIndex = 15;
 			// 
+			// PartsListView
+			// 
+			this.PartsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.PartsIdHeader,
+            this.PartsNameHeader,
+            this.PartsInventoryHeader,
+            this.PartsPriceHeader,
+            this.PartsMinHeader,
+            this.PartsMaxHeader});
+			this.PartsListView.FullRowSelect = true;
+			this.PartsListView.GridLines = true;
+			this.PartsListView.HideSelection = false;
+			this.PartsListView.Location = new System.Drawing.Point(15, 87);
+			this.PartsListView.MaximumSize = new System.Drawing.Size(575, 264);
+			this.PartsListView.MinimumSize = new System.Drawing.Size(575, 264);
+			this.PartsListView.Name = "PartsListView";
+			this.PartsListView.Size = new System.Drawing.Size(575, 264);
+			this.PartsListView.TabIndex = 16;
+			this.PartsListView.UseCompatibleStateImageBehavior = false;
+			// 
+			// PartsIdHeader
+			// 
+			this.PartsIdHeader.Text = "Part ID";
+			// 
+			// PartsNameHeader
+			// 
+			this.PartsNameHeader.Text = "Name";
+			this.PartsNameHeader.Width = 250;
+			// 
+			// PartsInventoryHeader
+			// 
+			this.PartsInventoryHeader.Text = "Inventory";
+			// 
+			// PartsPriceHeader
+			// 
+			this.PartsPriceHeader.Text = "Price";
+			this.PartsPriceHeader.Width = 80;
+			// 
+			// PartsMinHeader
+			// 
+			this.PartsMinHeader.Text = "Min";
+			// 
+			// PartsMaxHeader
+			// 
+			this.PartsMaxHeader.Text = "Max";
+			// 
+			// ProductsListView
+			// 
+			this.ProductsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ProductsIdHeader,
+            this.ProductsNameHeader,
+            this.ProductsInventoryHeader,
+            this.ProductsPriceHeader,
+            this.ProductsMinHeader,
+            this.ProductsMaxHeader});
+			this.ProductsListView.FullRowSelect = true;
+			this.ProductsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.ProductsListView.HideSelection = false;
+			this.ProductsListView.Location = new System.Drawing.Point(625, 87);
+			this.ProductsListView.MaximumSize = new System.Drawing.Size(575, 264);
+			this.ProductsListView.MinimumSize = new System.Drawing.Size(575, 264);
+			this.ProductsListView.Name = "ProductsListView";
+			this.ProductsListView.Size = new System.Drawing.Size(575, 264);
+			this.ProductsListView.TabIndex = 17;
+			this.ProductsListView.UseCompatibleStateImageBehavior = false;
+			// 
+			// ProductsIdHeader
+			// 
+			this.ProductsIdHeader.Text = "Product ID";
+			// 
+			// ProductsNameHeader
+			// 
+			this.ProductsNameHeader.Text = "Name";
+			this.ProductsNameHeader.Width = 250;
+			// 
+			// ProductsPriceHeader
+			// 
+			this.ProductsPriceHeader.Text = "Price";
+			this.ProductsPriceHeader.Width = 80;
+			// 
+			// ProductsMinHeader
+			// 
+			this.ProductsMinHeader.Text = "Min";
+			// 
+			// ProductsMaxHeader
+			// 
+			this.ProductsMaxHeader.Text = "Max";
+			// 
 			// MainForm
 			// 
 			this.ClientSize = new System.Drawing.Size(1219, 470);
+			this.Controls.Add(this.ProductsListView);
+			this.Controls.Add(this.PartsListView);
 			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.textBox1);
-			this.Controls.Add(this.listBox2);
-			this.Controls.Add(this.listBox1);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -207,6 +295,8 @@
 			this.Controls.Add(this.PartsAddButton);
 			this.Controls.Add(this.ProductsSearchButton);
 			this.Controls.Add(this.PartsSearchButton);
+			this.MaximumSize = new System.Drawing.Size(1235, 509);
+			this.MinimumSize = new System.Drawing.Size(1235, 509);
 			this.Name = "MainForm";
 			this.Text = "Main Form";
 			this.ResumeLayout(false);
@@ -256,10 +346,22 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.ListBox listBox1;
-		private System.Windows.Forms.ListBox listBox2;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.ListView PartsListView;
+		private System.Windows.Forms.ListView ProductsListView;
+		private System.Windows.Forms.ColumnHeader PartsIdHeader;
+		private System.Windows.Forms.ColumnHeader PartsNameHeader;
+		private System.Windows.Forms.ColumnHeader PartsInventoryHeader;
+		private System.Windows.Forms.ColumnHeader PartsPriceHeader;
+		private System.Windows.Forms.ColumnHeader PartsMinHeader;
+		private System.Windows.Forms.ColumnHeader PartsMaxHeader;
+		private System.Windows.Forms.ColumnHeader ProductsIdHeader;
+		private System.Windows.Forms.ColumnHeader ProductsNameHeader;
+		private System.Windows.Forms.ColumnHeader ProductsInventoryHeader;
+		private System.Windows.Forms.ColumnHeader ProductsPriceHeader;
+		private System.Windows.Forms.ColumnHeader ProductsMinHeader;
+		private System.Windows.Forms.ColumnHeader ProductsMaxHeader;
 	}
 }
 
