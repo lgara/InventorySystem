@@ -20,13 +20,6 @@ namespace InventorySystem
 			inventory.SeedAllParts();
 			PartsListView.View = View.Details;
 			UpdateForm();
-			//for (int i = 0; i < inventory.allParts.Count; i++)
-			//{
-			//	PartsListView.Items.Add
-			//		(new ListViewItem(new string[] { inventory.allParts[i].PartId.ToString(), inventory.allParts[i].Name, inventory.allParts[i].InStock.ToString(), inventory.allParts[i].Price.ToString(), inventory.allParts[i].Min.ToString(), inventory.allParts[i].Max.ToString() }));
-			//}
-			//PartsListView.Items[0].Focused = true;
-			//PartsListView.Items[0].Selected = true;
 		}
 
 		public void UpdateForm()
@@ -63,7 +56,16 @@ namespace InventorySystem
 
 		private void PartsDeleteButton_Click(object sender, EventArgs e)
 		{
-			inventory.DeletePart(PartsListView.SelectedItems[0].);
+			if (PartsListView.Items.Count >= 2)
+			{
+				inventory.DeletePart(inventory.allParts[int.Parse(PartsListView.SelectedItems[0].SubItems[0].Text)]);
+			}
+			else
+			{
+				MessageBox.Show("Can not delete because it is the only item.", "Can not delete!",
+				MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			UpdateForm();
 		}
 	}
 }
