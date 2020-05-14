@@ -40,7 +40,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.PartsSearchTextBox = new System.Windows.Forms.TextBox();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.PartsListView = new System.Windows.Forms.ListView();
 			this.PartsIdHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -66,6 +66,7 @@
 			this.PartsSearchButton.TabIndex = 0;
 			this.PartsSearchButton.Text = "Search";
 			this.PartsSearchButton.UseVisualStyleBackColor = true;
+			this.PartsSearchButton.Click += new System.EventHandler(this.PartsSearchButton_Click);
 			// 
 			// ProductsSearchButton
 			// 
@@ -174,12 +175,13 @@
 			this.label3.TabIndex = 11;
 			this.label3.Text = "Products";
 			// 
-			// textBox1
+			// PartsSearchTextBox
 			// 
-			this.textBox1.Location = new System.Drawing.Point(453, 62);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(137, 20);
-			this.textBox1.TabIndex = 14;
+			this.PartsSearchTextBox.Location = new System.Drawing.Point(453, 62);
+			this.PartsSearchTextBox.Name = "PartsSearchTextBox";
+			this.PartsSearchTextBox.Size = new System.Drawing.Size(137, 20);
+			this.PartsSearchTextBox.TabIndex = 14;
+			this.PartsSearchTextBox.TextChanged += new System.EventHandler(this.PartsSearchTextBox_TextChanged);
 			// 
 			// textBox2
 			// 
@@ -282,7 +284,7 @@
 			this.Controls.Add(this.ProductsListView);
 			this.Controls.Add(this.PartsListView);
 			this.Controls.Add(this.textBox2);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.PartsSearchTextBox);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -346,7 +348,7 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox PartsSearchTextBox;
 		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.ListView PartsListView;
 		private System.Windows.Forms.ListView ProductsListView;

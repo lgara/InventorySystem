@@ -10,16 +10,16 @@ namespace InventorySystem
 		Inventory inventory;
 		ListView partsListView;
 		InHouse inHouse = new InHouse();
-		Outsourced outSourced = new Outsourced();
+		Outsourced outsourced = new Outsourced();
 		string addOrModify = "";
-		public AddOrModifyPartForm(string buttonPressed, MainForm form, Inventory inv, ListView ListView)
+		public AddOrModifyPartForm(string buttonPressed, MainForm form, Inventory inv, ListView ListView, InHouse passedInHouse, Outsourced passedOutsourced)
 		{
 			inventory = inv;
 
 			mainForm = form;
 
 			partsListView = ListView;
-
+				
 			InitializeComponent();
 
 			AddPartLabel.Text = buttonPressed + " Part";
@@ -30,19 +30,22 @@ namespace InventorySystem
 
 			if (buttonPressed == "Modify")
 			{
+				
 				AddPartIdTextBox.Text = partsListView.SelectedItems[0].SubItems[0].Text;
 				AddPartNameTextBox.Text = partsListView.SelectedItems[0].SubItems[1].Text;
 				AddPartInventoryTextBox.Text = partsListView.SelectedItems[0].SubItems[2].Text;
 				AddPartPriceTextBox.Text = partsListView.SelectedItems[0].SubItems[3].Text;
 				AddPartMaxTextBox.Text = partsListView.SelectedItems[0].SubItems[5].Text;
 				AddPartMinTextBox.Text = partsListView.SelectedItems[0].SubItems[4].Text;
-				if (InHouseRadioButton.Checked)
+				if (passedInHouse != null)
 				{
-					AddPartMachineOrCompanyTextBox.Text = inHouse.MachineId.ToString();
+					InHouseRadioButton.Checked = true;
+					AddPartMachineOrCompanyTextBox.Text = passedInHouse.MachineId.ToString();
 				}
 				else
 				{
-					AddPartMachineOrCompanyTextBox.Text = outSourced.CompanyName;
+					OutsourcedRadioButton.Checked = true;
+					AddPartMachineOrCompanyTextBox.Text = passedOutsourced.CompanyName;
 				}
 			}
 			else
@@ -172,47 +175,45 @@ namespace InventorySystem
 		
 		private void AddPartSaveButton_Click(object sender, EventArgs e)
 		{
-			//if (addOrModify == "Add")
-			//{
-				//AddPartIdTextBox.Text = inventory.AllParts.Count.ToString();
-				if (InHouseRadioButton.Checked)
-				{					
-					inHouse.PartId = int.Parse(AddPartIdTextBox.Text);
-					inHouse.Name = AddPartNameTextBox.Text;
-					inHouse.Price = decimal.Parse(AddPartPriceTextBox.Text);
-					inHouse.InStock = int.Parse(AddPartInventoryTextBox.Text);
-					inHouse.Min = int.Parse(AddPartMinTextBox.Text);
-					inHouse.Max = int.Parse(AddPartMaxTextBox.Text);
-					inHouse.MachineId = int.Parse(AddPartMachineOrCompanyTextBox.Text);
-					if (addOrModify == "Add")
-					{
-						inventory.AddPart(inHouse);
-					}
-					else
-					{
-						inventory.UpdatePart(inHouse.PartId - 1, inHouse);
-					}
-				}
-				else if (OutsourcedRadioButton.Checked)
+			if (InHouseRadioButton.Checked)
+			{					
+				inHouse.PartId = int.Parse(AddPartIdTextBox.Text);
+				inHouse.Name = AddPartNameTextBox.Text;
+				inHouse.Price = decimal.Parse(AddPartPriceTextBox.Text);
+				inHouse.InStock = int.Parse(AddPartInventoryTextBox.Text);
+				inHouse.Min = int.Parse(AddPartMinTextBox.Text);
+				inHouse.Max = int.Parse(AddPartMaxTextBox.Text);
+				inHouse.MachineId = int.Parse(AddPartMachineOrCompanyTextBox.Text);
+				inHouse.isInHouse = true;
+				if (addOrModify == "Add")
 				{
-					outSourced.PartId = int.Parse(AddPartIdTextBox.Text);
-					outSourced.Name = AddPartNameTextBox.Text;
-					outSourced.Price = decimal.Parse(AddPartPriceTextBox.Text);
-					outSourced.InStock = int.Parse(AddPartInventoryTextBox.Text);
-					outSourced.Min = int.Parse(AddPartMinTextBox.Text);
-					outSourced.Max = int.Parse(AddPartMaxTextBox.Text);
-					outSourced.CompanyName = AddPartMachineOrCompanyTextBox.Text;
-					if (addOrModify == "Add")
-					{
-						inventory.AddPart(outSourced);
-					}
-					else
-					{
-						inventory.UpdatePart(outSourced.PartId - 1, outSourced);
-					}
+					inventory.AddPart(inHouse);
 				}
-			//}
-		
+				else
+				{
+					inventory.UpdatePart(inHouse.PartId, inHouse);
+				}
+			}
+			else if (OutsourcedRadioButton.Checked)
+			{
+				outsourced.PartId = int.Parse(AddPartIdTextBox.Text);
+				outsourced.Name = AddPartNameTextBox.Text;
+				outsourced.Price = decimal.Parse(AddPartPriceTextBox.Text);
+				outsourced.InStock = int.Parse(AddPartInventoryTextBox.Text);
+				outsourced.Min = int.Parse(AddPartMinTextBox.Text);
+				outsourced.Max = int.Parse(AddPartMaxTextBox.Text);
+				outsourced.CompanyName = AddPartMachineOrCompanyTextBox.Text;
+				outsourced.isOutsourced = true;
+				if (addOrModify == "Add")
+				{
+					inventory.AddPart(outsourced);
+				}
+				else
+				{
+					inventory.UpdatePart(outsourced.PartId, outsourced);
+				}
+			}
+			
 			mainForm.UpdateForm();
 			this.Close();
 			mainForm.Show();

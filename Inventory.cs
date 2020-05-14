@@ -53,10 +53,8 @@ namespace InventorySystem
 			AllParts[id] = part;
 		}
 
-		public void SeedAllParts()
+		public void SeedAllParts(InHouse inHouse, Outsourced outsourced)
 		{
-			InHouse inHouse = new InHouse();
-			Outsourced outsourced = new Outsourced();
 			inHouse.PartId = 0;
 			inHouse.Name = "stuff";
 			inHouse.InStock = 5;

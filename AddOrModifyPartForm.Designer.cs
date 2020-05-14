@@ -62,12 +62,10 @@
 			// InHouseRadioButton
 			// 
 			this.InHouseRadioButton.AutoSize = true;
-			this.InHouseRadioButton.Checked = true;
 			this.InHouseRadioButton.Location = new System.Drawing.Point(183, 12);
 			this.InHouseRadioButton.Name = "InHouseRadioButton";
 			this.InHouseRadioButton.Size = new System.Drawing.Size(68, 17);
 			this.InHouseRadioButton.TabIndex = 1;
-			this.InHouseRadioButton.TabStop = true;
 			this.InHouseRadioButton.Text = "In-House";
 			this.InHouseRadioButton.UseVisualStyleBackColor = true;
 			this.InHouseRadioButton.CheckedChanged += new System.EventHandler(this.InHouseRadioButton_CheckedChanged);

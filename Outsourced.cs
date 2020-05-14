@@ -9,5 +9,6 @@ namespace InventorySystem
 	public class Outsourced : Part
 	{
 		public string CompanyName { get; set; }
+		public bool isOutsourced { get; set; }
 	}
 }
